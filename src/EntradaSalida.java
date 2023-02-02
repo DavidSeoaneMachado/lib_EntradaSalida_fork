@@ -1,10 +1,12 @@
 import javax.swing.*;
+import java.util.Scanner;
 
 /**
  * Libreria para sacar por dispositivos un mensaje y
  * pedir por consola distintos tipos de datos
- * @version 0.1
+ *
  * @author Damian Nogueiras
+ * @version 0.1
  */
 public class EntradaSalida {
     /**
@@ -16,11 +18,16 @@ public class EntradaSalida {
      */
     public static final int SALIDA_WINDOW = 2;
 
-    private void EntradaSalida(){};
+    private void EntradaSalida() {
+
+    }
+
+    ;
 
     /**
      * Salida por ventana o consala de un mensaje
-     * @param msj cadena que queremos imprimir
+     *
+     * @param msj    cadena que queremos imprimir
      * @param device dispositivo de salida<br>consola: SALIDA_CONSOLA<br>ventana:SALIDA_VENTANA
      * @return si es true: correcto si no false
      */
@@ -36,9 +43,9 @@ public class EntradaSalida {
 
             case SALIDA_WINDOW:
                 try {
-                    JOptionPane.showMessageDialog(null,"Sale por un ventana " + msj);
+                    JOptionPane.showMessageDialog(null, "Sale por un ventana " + msj);
                     return true;
-                } catch(Exception e) {
+                } catch (Exception e) {
                     System.out.println(e.getMessage());
                     return false;
                 }
@@ -48,11 +55,42 @@ public class EntradaSalida {
     }
 
     /**
-     * TODO método para obtener distintos tipos de datos por consola
-     * @param comentario
-     * @return
+     * Método para obtener numeros enteros por consola
+     *
+     * @param comentario mensaje al usuario
+     * @return si es true: correcto si no false
      */
-    public static String entrada(String comentario){
-        return "";
+    public static Boolean entradaEnteros(String comentario) {
+        Scanner cubrir = new Scanner(System.in);
+        int numero = 0;
+        try {
+            System.out.println(comentario);
+            numero = cubrir.nextInt();
+            System.out.println("Has introducido el número " + numero);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Has introducido un caracter no numérico, BOBO");
+            return false;
+        }
+    }
+
+    /**
+     * Método para obtener mensajes por consola
+     *
+     * @param comentario mensaje al usuario
+     * @return esi es true: correcto si no false
+     */
+    public static Boolean entradaCadena(String comentario) {
+        Scanner cubrir = new Scanner(System.in);
+        String mensaje = "";
+        try {
+            System.out.println(comentario);
+            mensaje = cubrir.nextLine();
+            System.out.println("Has introducido '" + mensaje + "'");
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error al introducir el mensaje");
+            return false;
+        }
     }
 }
